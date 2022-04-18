@@ -1,6 +1,6 @@
 ## A simple home-manager starter using flakes, building in github actions, and automatic updates to the repo
 
-```bash
+```
 nix run .#hm -- --help
 # test your configuration
 nix run .#build # alias to nix run .#hm build
