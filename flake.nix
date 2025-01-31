@@ -9,7 +9,7 @@
       in
       {
         homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          inherit system pkgs;
           username = "keith"; # UPDATE
           homeDirectory = "/home/keith"; # UPDATE
           configuration = { pkgs, ... }: {
