@@ -5,6 +5,7 @@
     packages =
       let
         pkgs = nixpkgs.legacyPackages.${system};
+        inherit (pkgs.writers) writeBashBin;
       in
       {
         homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
@@ -16,13 +17,13 @@
           };
         };
 
-        hm = writers.writeBashBin "hm" ''
+        hm = writeBashBin "hm" ''
           ${home-manager.packages.${system}.home-manager}/bin/home-manager \
             --flake ${self}#default \
             "$@"
         '';
-        build = writers.writeBashBin "build" "nix run ${self}#hm build";
-        switch = writers.writeBashBin "switch" "nix run ${self}#hm switch";
+        build = writeBashBin "build" "nix run ${self}#hm build";
+        switch = writeBashBin "switch" "nix run ${self}#hm switch";
       };
   });
 }
