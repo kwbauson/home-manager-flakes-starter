@@ -9,12 +9,12 @@
       in
       {
         homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
-          inherit system pkgs;
-          username = "keith"; # UPDATE
-          homeDirectory = "/home/keith"; # UPDATE
-          configuration = { pkgs, ... }: {
+          inherit pkgs;
+          modules = [ ({ pkgs, ... }: {
+            home.username = "keith"; # UPDATE
+            home.homeDirectory = "/home/keith"; # UPDATE
             home.packages = with pkgs; [ hello ];
-          };
+          }) ];
         };
 
         hm = writeBashBin "hm" ''
